@@ -1,5 +1,3 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
 # To do List
 
 > An app to set tasks and interact with them by adding, removing or mark as completed
