@@ -9,7 +9,7 @@ class Task {
   }
 }
 
-let tareas = [];
+let tasks = [];
 
 
 const defaultTasks = [
@@ -39,10 +39,13 @@ function addTask(task) {
   <div>${task.task}</div>
   `;
   container.appendChild(row);
+
+  const taskitem = new Task(task.completed, task.task, task.index);
+  tasks.push(taskitem);
 }
 
 function displayTasks(){
   defaultTasks.forEach(task => addTask(task));
 }
-
+console.log(tasks);
 displayTasks();
