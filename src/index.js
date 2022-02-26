@@ -10,17 +10,39 @@ class Task {
 }
 
 let tareas = [];
-const container = document.getElementById('list');
+
 
 const defaultTasks = [
   {
-    task: 'study'
+    completed: false,
+    task: 'study',
+    index: 1
   },
   {
-    task: 'eat'
+    completed: false,
+    task: 'eat',
+    index: 2
   },
   {
-    task: 'sleep'
+    completed: false,
+    task: 'sleep',
+    index: 3
   },
 ];
 
+function addTask(task) {
+  const container = document.getElementById('list');
+  const row = document.createElement('li');
+  
+  row.innerHTML= `
+  <input name="completed" type="checkbox" class="completed-sheck">
+  <div>${task.task}</div>
+  `;
+  container.appendChild(row);
+}
+
+function displayTasks(){
+  defaultTasks.forEach(task => addTask(task));
+}
+
+displayTasks();
