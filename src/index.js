@@ -8,7 +8,7 @@ class Task {
   }
 }
 
-let tasks = [];
+const tasks = [];
 
 const defaultTasks = [
   {
@@ -42,6 +42,6 @@ function addTask(task) {
 }
 
 function displayTasks() {
-  defaultTasks.forEach(task => (addTask(task)));
+  defaultTasks.forEach((task) => addTask(task));
 }
 displayTasks();
