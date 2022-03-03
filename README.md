@@ -1,2 +1,34 @@
-# webpack_set
-webpack template following guides provided by Microverse
+# To do List
+
+> An app to set tasks and interact with them by adding, removing or mark as completed
+
+
+## Built With
+
+- Html, Css and Javascript
+
+
+
+## Authors
+
+👤 **Walter Velasquez**
+
+- GitHub: [@Sirvelasque](https://github.com/Sirvelasque)
+
+
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+
+
+## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
