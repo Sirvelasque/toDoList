@@ -1,8 +1,7 @@
 import './style.css';
-import Task from '../modules/tasks.js';
 import update from '../modules/ToDoList';
 
-const container = document.getElementById('list');
+const deleteBtn = document.querySelector('#delete')
 const input = document.querySelector('#newTask');
 
 update.loadDataFromStorage();
@@ -12,4 +11,8 @@ input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     update.addTask(task);
   }
+});
+
+deleteBtn.addEventListener('click', () =>{
+  update.removefromUI();
 });
