@@ -47,12 +47,51 @@ class Todo {
     const taskHtml = document.createElement('div');
     row.classList.add('item');
     taskHtml.innerHTML = ` <div>${task}</div>`;
+    taskHtml.addEventListener('dblclick', (e)=>{
+      this.editTask(e);
+    });
     row.innerHTML = `
     <input name="completed" type="checkbox" class="completed-sheck">
     `;
     row.appendChild(taskHtml);
     container.appendChild(row);
 
+  }
+
+  // Edit task
+  static editTask(e){
+    const oldTask = e.target.innerHTML;
+    const newinput = document.createElement('input');
+    newinput.type = 'text';
+    newinput.value = oldTask;
+    newinput.classList.add('edit');
+    newinput.addEventListener('keypress', (e)=>{
+      this.saveTask(e, oldTask);
+    });
+    newinput.addEventListener('click', (e)=>{
+      this.saveTask(e, oldTask);
+    });
+    e.target.replaceWith(newinput);
+    newinput.select();
+  }
+
+  static saveTask(e, oldTask) {
+    if (e.keyCode === 13 || e.type === 'click'){
+      const taskHtml = document.createElement('div');
+      taskHtml.addEventListener('dblclick', (e)=>{
+        this.editTask(e);
+      });
+      taskHtml.textContent = e.target.value;
+      this.tasks.forEach((task) => this.saveChanges(task, oldTask, e.target.value));
+      e.target.replaceWith(taskHtml);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
+  }
+
+  static saveChanges(task, oldTask, actualtask){
+    if(task.task === oldTask){
+      this.tasks[task.index - 1].task = actualtask;
+    }
   }
 
   // First call to the displlay function for the storaged items
