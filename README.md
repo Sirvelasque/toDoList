@@ -5,9 +5,22 @@
 
 ## Built With
 
-- Html, Css and Javascript
+- Html and Css
+- Javascript
+- Github and GithubFlow
+- Webpack
 
+## How to run in your local machine
 
+- Copy the URL: git@github.com:Sirvelasque/ToDoList.git"
+- In your terminal, go to the directory you want to clone the repository.
+- Use the command: git clone git@github.com:Sirvelasque/ToDoList.git
+- Open index.html file
+- Run npm install in the terminal to install node modules
+- Execute npm run dev in terminal to build the development files
+- To start a server run npm start and the server would be started
+- To Add the new task just enter the task description in the input field and press enter.
+- To Edit the task double click on the task you want to edit and it would become editable, click it one more time or press enter once the edition is done.
 
 ## Authors
 
