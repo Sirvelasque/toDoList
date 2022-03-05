@@ -14,7 +14,7 @@ class Todo {
     this.tasks.push(newtask);
 
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    this.displaytask(task);
+    this.displaytask(newtask);
   }
 
   // Remove tasks in 3 steps. 1- remove them from HTML
@@ -60,12 +60,18 @@ class Todo {
       const actualindex = (this.tasks.find((task) => task.task == e.target.parentElement.querySelector('.task').innerText).index -1);
 
       this.tasks[actualindex].completed = status.updateItem(e, this.tasks[actualindex]);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     });
     taskHtml.classList.add('task')
-    taskHtml.innerHTML = ` <div>${task}</div>`;
+    taskHtml.innerHTML = ` <div>${task.task}</div>`;
     taskHtml.addEventListener('dblclick', (e) => {
       this.editTask(e);
     });
+    if(task.completed === true){
+      checkbox.checked = true;
+      row.classList.toggle('completed');
+    }
+
     row.appendChild(checkbox);
     row.appendChild(taskHtml);
     container.appendChild(row);
@@ -109,7 +115,7 @@ class Todo {
 
   // First call to the displlay function for the storaged items
   static displayTasks() {
-    this.tasks.forEach((task) => this.displaytask(task.task));
+    this.tasks.forEach((task) => this.displaytask(task));
   }
 
   // Getting tasks from local storage
