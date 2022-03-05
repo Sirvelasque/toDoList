@@ -136,7 +136,11 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_ToDoList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/ToDoList */ \"./modules/ToDoList.js\");\n\r\n\r\n\r\nconst deleteBtn = document.querySelector('#delete')\r\nconst input = document.querySelector('#newTask');\r\n\r\n_modules_ToDoList__WEBPACK_IMPORTED_MODULE_1__[\"default\"].loadDataFromStorage();\r\n\r\ninput.addEventListener('keypress', (e) => {\r\n   const task = input.value;\r\n  if (e.key === 'Enter') {\r\n    _modules_ToDoList__WEBPACK_IMPORTED_MODULE_1__[\"default\"].addTask(task);\r\n  }\r\n});\r\n\r\ndeleteBtn.addEventListener('click', () =>{\r\n  _modules_ToDoList__WEBPACK_IMPORTED_MODULE_1__[\"default\"].removefromUI();\r\n});\r\n\n\n//# sourceURL=webpack://webpack_set/./src/index.js?");
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\r\n\r\nclass Task {\r\n  constructor(completed, task, index) {\r\n    this.completed = completed;\r\n    this.task = task;\r\n    this.index = index;\r\n  }\r\n}\r\n\r\nconst tasks = [];\r\n\r\nconst defaultTasks = [\r\n  {\r\n    completed: false,\r\n    task: 'study',\r\n    index: 1,\r\n  },\r\n  {\r\n    completed: false,\r\n    task: 'eat',\r\n    index: 2,\r\n  },\r\n  {\r\n    completed: false,\r\n    task: 'sleep',\r\n    index: 3,\r\n  },\r\n];\r\n\r\nfunction addTask(task) {\r\n  const container = document.getElementById('list');\r\n  const row = document.createElement('li');\r\n  row.innerHTML = `\r\n  <input name=\"completed\" type=\"checkbox\" class=\"completed-sheck\">\r\n  <div>${task.task}</div>\r\n  `;\r\n  container.appendChild(row);\r\n\r\n  const taskitem = new Task(task.completed, task.task, task.index);\r\n  tasks.push(taskitem);\r\n}\r\n\r\nfunction displayTasks() {\r\n  defaultTasks.forEach((task) => addTask(task));\r\n}\r\ndisplayTasks();\n\n//# sourceURL=webpack://webpack_set/./src/index.js?");
+
 
 /***/ })
 
