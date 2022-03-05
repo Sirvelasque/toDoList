@@ -5,17 +5,17 @@ class Todo {
 
   // Add tasks to the Array, local storage and screen
   static addTask(task) {
-    if(!localStorage.getItem('tasks')){
+    if (!localStorage.getItem('tasks')) {
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
-   }
+    }
     const newtask = new Task(false, task, this.tasks.length + 1);
     this.tasks.push(newtask);
- 
+
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytask(task);
   }
 
-   // Remove tasks in 3 steps. 1- remove them from HTML
+  // Remove tasks in 3 steps. 1- remove them from HTML
   static removefromUI() {
     document.querySelectorAll('.completed').forEach((listItem) => listItem.remove());
 
@@ -23,31 +23,31 @@ class Todo {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
- // 2- remove them from the To do list array
-  static removeFromList (task){
-    const num = task.index -1;
+  // 2- remove them from the To do list array
+  static removeFromList(task) {
+    const num = task.index - 1;
 
-    if(task.completed === true){
+    if(task.completed === true) {
       this.tasks.splice(num, 1);
       this.updateIndexes(num);
     }
   }
 
-// 3- update indexes every time and object is deleted
-  static updateIndexes(index){
-    for(let i = index; i < this.tasks.length ; i+=1){
-      this.tasks[i].index -=1;
+  // 3- update indexes every time and object is deleted
+  static updateIndexes(index) {
+    for (let i = index; i < this.tasks.length; i += 1) {
+      this.tasks[i].index -= 1;
     }
   }
 
   // append a template with incoming data to the HTML
-  static displaytask(task){
+  static displaytask(task) {
     const row = document.createElement('li');
     const container = document.getElementById('list');
     const taskHtml = document.createElement('div');
     row.classList.add('item');
     taskHtml.innerHTML = ` <div>${task}</div>`;
-    taskHtml.addEventListener('dblclick', (e)=>{
+    taskHtml.addEventListener('dblclick', (e) => {
       this.editTask(e);
     });
     row.innerHTML = `
@@ -55,20 +55,19 @@ class Todo {
     `;
     row.appendChild(taskHtml);
     container.appendChild(row);
-
   }
 
   // Edit task
-  static editTask(e){
+  static editTask(e) {
     const oldTask = e.target.innerHTML;
     const newinput = document.createElement('input');
     newinput.type = 'text';
     newinput.value = oldTask;
     newinput.classList.add('edit');
-    newinput.addEventListener('keypress', (e)=>{
+    newinput.addEventListener('keypress', (e) => {
       this.saveTask(e, oldTask);
     });
-    newinput.addEventListener('click', (e)=>{
+    newinput.addEventListener('click', (e) => {
       this.saveTask(e, oldTask);
     });
     e.target.replaceWith(newinput);
@@ -76,9 +75,9 @@ class Todo {
   }
 
   static saveTask(e, oldTask) {
-    if (e.keyCode === 13 || e.type === 'click'){
+    if (e.keyCode === 13 || e.type === 'click') {
       const taskHtml = document.createElement('div');
-      taskHtml.addEventListener('dblclick', (e)=>{
+      taskHtml.addEventListener('dblclick', (e) => {
         this.editTask(e);
       });
       taskHtml.textContent = e.target.value;
@@ -88,14 +87,14 @@ class Todo {
     }
   }
 
-  static saveChanges(task, oldTask, actualtask){
-    if(task.task === oldTask){
+  static saveChanges(task, oldTask, actualtask) {
+    if (task.task === oldTask) {
       this.tasks[task.index - 1].task = actualtask;
     }
   }
 
   // First call to the displlay function for the storaged items
-  static displayTasks(){
+  static displayTasks() {
     this.tasks.forEach((task) => this.displaytask(task.task));
   }
 
@@ -107,7 +106,5 @@ class Todo {
     }
     this.displayTasks();
   }
-
 }
-
 export default Todo;

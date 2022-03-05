@@ -1,18 +1,18 @@
 import './style.css';
-import update from '../modules/ToDoList';
+import update from '../modules/ToDoList.js';
 
-const deleteBtn = document.querySelector('#delete')
+const deleteBtn = document.querySelector('#delete');
 const input = document.querySelector('#newTask');
 
 update.loadDataFromStorage();
 
 input.addEventListener('keypress', (e) => {
-   const task = input.value;
+  const task = input.value;
   if (e.key === 'Enter') {
     update.addTask(task);
   }
 });
 
-deleteBtn.addEventListener('click', () =>{
+deleteBtn.addEventListener('click', () => {
   update.removefromUI();
 });
