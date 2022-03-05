@@ -1,4 +1,5 @@
 import Task from './tasks.js';
+import status from './status.js';
 
 class Todo {
   static tasks = [];
@@ -12,7 +13,7 @@ class Todo {
     this.tasks.push(newtask);
 
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    this.displaytask(task);
+    this.displaytask(newtask);
   }
 
   // Remove tasks in 3 steps. 1- remove them from HTML
@@ -42,17 +43,35 @@ class Todo {
 
   // append a template with incoming data to the HTML
   static displaytask(task) {
-    const row = document.createElement('li');
     const container = document.getElementById('list');
+    const row = document.createElement('li');
+    const checkbox = document.createElement('input');
     const taskHtml = document.createElement('div');
+
     row.classList.add('item');
-    taskHtml.innerHTML = ` <div>${task}</div>`;
+    checkbox.name = 'completed';
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('completed_check');
+    checkbox.addEventListener('click', (e) => {
+      status.classUpdate(e);
+
+      // get object index
+      const actualindex = (this.tasks.find((task) => task.task === e.target.parentElement.querySelector('.task').innerText).index - 1);
+
+      this.tasks[actualindex].completed = status.updateItem(e, this.tasks[actualindex]);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    });
+    taskHtml.classList.add('task');
+    taskHtml.innerHTML = ` <div>${task.task}</div>`;
     taskHtml.addEventListener('dblclick', (e) => {
       this.editTask(e);
     });
-    row.innerHTML = `
-    <input name="completed" type="checkbox" class="completed-sheck">
-    `;
+    if (task.completed === true) {
+      checkbox.checked = true;
+      row.classList.toggle('completed');
+    }
+
+    row.appendChild(checkbox);
     row.appendChild(taskHtml);
     container.appendChild(row);
   }
@@ -95,7 +114,7 @@ class Todo {
 
   // First call to the displlay function for the storaged items
   static displayTasks() {
-    this.tasks.forEach((task) => this.displaytask(task.task));
+    this.tasks.forEach((task) => this.displaytask(task));
   }
 
   // Getting tasks from local storage
