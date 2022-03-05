@@ -5,9 +5,7 @@
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Html, Css and Javascript
 
 
 
