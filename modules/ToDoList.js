@@ -120,6 +120,5 @@ class Todo {
     }
     this.displayTasks();
   }
-
 }
 export default Todo;
