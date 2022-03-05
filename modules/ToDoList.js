@@ -1,5 +1,6 @@
 import Task from './tasks.js';
 import status from './status.js';
+import { findIndex } from 'lodash';
 
 class Todo {
   static tasks = [];
@@ -54,7 +55,13 @@ class Todo {
     checkbox.classList.add('completed_check');
     checkbox.addEventListener('click', (e) => {
       status.classUpdate(e);
+
+      // get object index
+      const actualindex = (this.tasks.find((task) => task.task == e.target.parentElement.querySelector('.task').innerText).index -1);
+
+      this.tasks[actualindex].completed = status.updateItem(e, this.tasks[actualindex]);
     });
+    taskHtml.classList.add('task')
     taskHtml.innerHTML = ` <div>${task}</div>`;
     taskHtml.addEventListener('dblclick', (e) => {
       this.editTask(e);
@@ -113,5 +120,6 @@ class Todo {
     }
     this.displayTasks();
   }
+
 }
 export default Todo;
