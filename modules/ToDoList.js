@@ -1,4 +1,5 @@
 import Task from './tasks.js';
+import status from './status.js';
 
 class Todo {
   static tasks = [];
@@ -42,17 +43,23 @@ class Todo {
 
   // append a template with incoming data to the HTML
   static displaytask(task) {
-    const row = document.createElement('li');
     const container = document.getElementById('list');
+    const row = document.createElement('li');
+    const checkbox = document.createElement('input');
     const taskHtml = document.createElement('div');
+
     row.classList.add('item');
+    checkbox.name ='completed';
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('completed_check');
+    checkbox.addEventListener('click', (e) => {
+      status.classUpdate(e);
+    });
     taskHtml.innerHTML = ` <div>${task}</div>`;
     taskHtml.addEventListener('dblclick', (e) => {
       this.editTask(e);
     });
-    row.innerHTML = `
-    <input name="completed" type="checkbox" class="completed-sheck">
-    `;
+    row.appendChild(checkbox);
     row.appendChild(taskHtml);
     container.appendChild(row);
   }
