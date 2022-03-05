@@ -8,7 +8,7 @@ class status {
     const checkbox = e.target;
     if (checkbox.checked) {
       return true;
-    } 
+    }
     return false;
   }
 }
