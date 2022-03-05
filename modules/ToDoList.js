@@ -27,7 +27,7 @@ class Todo {
   static removeFromList(task) {
     const num = task.index - 1;
 
-    if(task.completed === true) {
+    if (task.completed === true) {
       this.tasks.splice(num, 1);
       this.updateIndexes(num);
     }
