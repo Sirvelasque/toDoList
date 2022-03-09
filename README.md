@@ -10,6 +10,9 @@
 - Github and GithubFlow
 - Webpack
 
+## Live Demo
+https://sirvelasque.github.io/toDoList/
+
 ## How to run in your local machine
 
 - Copy the URL: git@github.com:Sirvelasque/ToDoList.git"
